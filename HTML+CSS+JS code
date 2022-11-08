@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: rgba(149, 0, 248, 0.923);
+
+        display: flexbox;
+        flex-wrap: wrap;
+
+        padding-left: 10%;
+      }
+      h1 {
+        color: white;
+      }
+      #again {
+        border-radius: 20px;
+        border-color: white;
+        font-family: "Courier New", Courier, monospace;
+        width: max-content;
+        height: 30px;
+        background-color: rgb(0, 255, 234);
+      }
+      button {
+        border-radius: 5px;
+        margin: 10px;
+        width: 50px;
+        height: 50px;
+        background-color: grey;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="points">Score= 0</h1>
+      <div class="div1">
+        <button id="b1"></button>
+        <button id="b2"></button>
+        <button id="b3"></button>
+        <button id="b4"></button>
+      </div>
+      <div class="div2">
+        <button id="b5"></button>
+        <button id="b6"></button>
+        <button id="b7"></button>
+        <button id="b8"></button>
+      </div>
+      <div class="div3">
+        <button id="b9"></button>
+        <button id="b10"></button>
+        <button id="b11"></button>
+        <button id="b12"></button>
+      </div>
+      <div class="div4">
+        <button id="b13"></button>
+        <button id="b14"></button>
+        <button id="b15"></button>
+        <button id="b16"></button>
+      </div>
+
+      <br /><br />
+      <button id="again" onclick="location.reload()">
+        CLICK TO PLAY AGAIN
+      </button>
+    </div>
+  </body>
+
+  <script>
+    var score = 0;
+
+    function glow(id) {
+      //CHANGES BUTTON WITH ID="id" TO RED COLOR FOR A SECOND
+
+      document.getElementById(id).style.backgroundColor = "red";
+
+      setTimeout(function () {
+        document.getElementById(id).style.backgroundColor = "grey"; //BACK TO WHITE AFTER A SECOND
+      }, 1000);
+    }
+
+    function randomNumber() {
+      return Math.floor(Math.random() * 16 + 1);
+    }
+
+    let b1 = document.getElementById("b1");
+    let b2 = document.getElementById("b2");
+    let b3 = document.getElementById("b3");
+    let b4 = document.getElementById("b4");
+    var curr = 1;
+
+    var clicks = [];
+
+    function show(x) {
+      console.log("array=", x);
+    }
+
+    var arr = [];
+
+    function equal() {
+      //wait for more clicks
+      for (var i = 0; i < clicks.length; i++) {
+        if (arr[i] != clicks[i]) return -1; //same size but not same elements
+      }
+      if (clicks.length < arr.length) return 0;
+      score += 100;
+      document.getElementById("points").innerText = "Score=" + score;
+      return 1; ///everything is same in both arrays
+    }
+
+    arr.push(randomNumber());
+    setTimeout(glow("b" + arr[arr.length - 1]), 3000);
+
+    b1.addEventListener("click", function () {
+      clicks.push(1);
+      show(clicks);
+      show(arr);
+      curr = 1;
+      if (equal() == 1) {
+        console.log("correct same");
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+
+      console.log("curr=", curr);
+    });
+    b2.addEventListener("click", function () {
+      clicks.push(2);
+      show(clicks);
+      show(arr);
+
+      curr = 2;
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+
+      console.log("curr=", curr);
+    });
+    b3.addEventListener("click", function () {
+      clicks.push(3);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+
+      curr = 3;
+      console.log("curr=", curr);
+    });
+    b4.addEventListener("click", function () {
+      clicks.push(4);
+      show(clicks);
+      show(arr);
+
+      curr = 4;
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+
+      console.log("curr=", curr);
+    });
+    b5.addEventListener("click", function () {
+      clicks.push(5);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+    b6.addEventListener("click", function () {
+      clicks.push(6);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+    b7.addEventListener("click", function () {
+      clicks.push(7);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+    b8.addEventListener("click", function () {
+      clicks.push(8);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+    b9.addEventListener("click", function () {
+      clicks.push(9);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+    b10.addEventListener("click", function () {
+      clicks.push(10);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+    b11.addEventListener("click", function () {
+      clicks.push(11);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+    b12.addEventListener("click", function () {
+      clicks.push(12);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+    b13.addEventListener("click", function () {
+      clicks.push(13);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+    b14.addEventListener("click", function () {
+      clicks.push(14);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+    b15.addEventListener("click", function () {
+      clicks.push(15);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+    b16.addEventListener("click", function () {
+      clicks.push(16);
+      show(clicks);
+      show(arr);
+
+      if (equal() == 1) {
+        clicks = [];
+        arr.push(randomNumber());
+        glow("b" + arr[arr.length - 1]);
+        console.log("correct same");
+        console.log("score=", score);
+      } else if (equal() == -1) {
+        document.getElementById("points").innerText =
+          "Score=" + score + "   YOU LOST !!!!";
+      }
+    });
+  </script>
+</html>
